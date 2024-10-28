@@ -5,6 +5,7 @@
 body {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -32,4 +33,11 @@ body {
     border-radius: 50%;
     position: relative;
     left: 0px;
+}
+
+#divScore {
+    display: flex;
+    width: 1200px;
+    justify-content: space-around;
+    font-size: 2em;
 }

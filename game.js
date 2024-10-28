@@ -1,12 +1,21 @@
 const ball = document.getElementById('ball');
 const game = document.getElementById('game');
+const scoreDisplay = document.getElementById('score');
+const mScoreDisplay = document.getElementById('mScore');
 
 let speed = 2; // Vitesse initiale (en px)
 let direction; 
 let gameInterval;
 let score = 0; 
 let ballPosition
+let mScore = localStorage.getItem("mScoreBall");
+if (mScore == null) {
+    mScore = 0;
+}
+
 const proximityThreshold = 50; // Distance pour détecter le bord
+
+mScoreDisplay.textContent = `Meilleur Score : ${mScore}`;
 
 function startGame() {
     setDirection();
@@ -36,6 +45,10 @@ function moveBall() {
 }
 
 function endGame() {
+    if (score > mScore){
+        mScore = score;
+        localStorage.setItem("mScoreBall", mScore);
+    }
     alert(`Game Over! Votre score: ${score}`);
     clearInterval(gameInterval);
 }
@@ -45,12 +58,14 @@ function KeyPress(event) {
             score++;
             ball.style.left = `0px`;
             setDirection();
+            scoreDisplay.textContent = `Score : ${score}`;
             speed = speed + 0.5;
     } 
     if (event.key === 'ArrowRight' && ballPosition > 450) {
             score++;
             ball.style.left = `0px`;
             setDirection();
+            scoreDisplay.textContent = `Score : ${score}`;
             speed = speed + 0.5;
     }
 }
